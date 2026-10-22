@@ -1,0 +1,31 @@
+# Xiaomi P1 (croods / Android 10) debloat list
+# Disabled for user 0 (safe and reversible with tools/restore.ps1)
+
+# Xiaomi PatchWall / Mi TV launcher bloat & recommendations
+com.mitv.tvhome.atv                 # PatchWall ATV launcher / home
+com.mitv.tvhome.mitvplus             # PatchWall Mi TV+ integration
+com.mitv.tvhome.michannel            # Mi Channel recommendation row
+com.xm.webcontent                   # Xiaomi web content recommendation service
+com.xiaomi.mitv.updateservice       # Xiaomi background update pusher
+
+# Xiaomi Analytics, Telemetry & Tracking
+com.miui.tv.analytics               # Xiaomi TV telemetry & ad tracking
+com.xiaomi.statistic                # Xiaomi usage statistics
+com.xiaomi.mitv.manualhelp          # Xiaomi manual / feedback helper
+com.xiaomo.tv.milegal               # Xiaomi legal terms background service
+
+# Google TV / Android TV home ads and recommendation rows
+com.google.android.tvrecommendations # Sponsored ad rows & hero recommendations
+com.google.android.leanbacklauncher.recommendations # Leanback recommendations service
+com.google.android.tungsten.setupwraith # Setup wraith (hijacks Home button on launcher change)
+com.google.android.feedback         # Google feedback agent
+com.google.android.tv.bugreportsender # Bug report sender
+
+# Demo & Retail apps
+fusion.android.tv.demo              # Retail store display mode
+com.xiaomi.amazon.alexa             # Xiaomi Alexa integration (if using Google Assistant)
+
+# Unused Google apps (optional: uncomment if you don't use them)
+# com.google.android.videos          # Google TV / Play Movies
+# com.google.android.play.games      # Google Play Games
+# com.google.android.youtube.tvmusic # YouTube Music

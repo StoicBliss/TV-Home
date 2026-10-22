@@ -1,0 +1,25 @@
+# Private to your machine / your TV
+tools/venv/
+tools/adbkey/
+tools/.tv_host
+launcher/debug.keystore
+backup/
+backup_*.txt
+backup*.txt
+shots/
+
+# Build output
+launcher/build/
+launcher/gen/
+gen/
+*.apk
+.DS_Store
+__pycache__/
+*.pyc
+
+# IDE / Editor files
+.classpath
+.project
+.settings/
+.idea/
+.vscode/

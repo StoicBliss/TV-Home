@@ -2,7 +2,7 @@
 
 **Make a slow, ad-filled Android TV fast, clean, and beautiful again.**
 
-Debloat it over Wi-Fi and replace the cluttered stock launcher with a tiny, lightning-fast Apple TV-style home screen featuring dynamic nature wallpapers, live weather, network status, an inputs switcher, and a custom dock of your favorite apps.
+Debloat it over Wi-Fi and replace the cluttered stock launcher with a tiny, lightning-fast Apple TV-style home screen featuring dynamic 4K/1080p landscape wallpapers, live weather, network status, an inputs switcher, and a custom dock of your favorite apps.
 
 Everything is safe and 100% reversible: bloat packages are disabled for user 0, never permanently deleted.
 
@@ -14,12 +14,20 @@ Everything is safe and 100% reversible: bloat packages are disabled for user 0, 
 
 - **Blazing Fast & Lightweight**: Zero background bloat, minimal memory footprint (replaces 200MB+ bloated OEM launchers with a native ~50KB home screen).
 - **Apple TV-Style Experience**:
-  - Live clock, greeting, date, and current weather top-left.
-  - Status pills top-right: Wi-Fi network name, Ethernet status, Inputs dropdown (HDMI/AV/Live TV), and Settings shortcut.
-  - Pinned dock for favorite apps with focused app title and banner glow.
-  - D-pad Down opens full app drawer in a responsive grid.
-  - Long-press / Menu key to customize dock apps directly from the TV.
-- **Dynamic Nature Wallpapers**: Smoothly crossfades curated high-resolution landscape photography from Unsplash.
+  - **Frosted Glass Header Panel**: Clean Apple SF Pro typography (`sans-serif-medium`, title-case date) displaying live clock, greeting, and local weather inside a translucent glass widget.
+  - **Status Pills**: Real-time Wi-Fi network name / Ethernet status, Inputs dropdown (HDMI 1/2/3, AV, TV Tuner), and quick Settings shortcut.
+  - **Refined Dock Focus**:
+    - Focused app zooms to **1.16x** with **10dp** elevation (`translationZ`).
+    - Subtle frosted glass rim and reflection gradient highlight.
+    - Centered bottom indicator pill underneath the active card.
+    - Surrounding dock apps gently dim to **0.65x** opacity for unmistakable TV contrast.
+  - **Enforced Dock Focus**: Cursor always defaults and returns to the app dock on cold boot, wake, app exits, and Back/Home presses.
+  - **Customizable Dock**: Long-press D-pad Center or Menu key to pin, unpin, and reorder dock apps on the TV without rebooting.
+  - **App Drawer**: D-pad Down scrolls to full app drawer in an adaptive grid.
+- **Dynamic 4K & 1080p Landscape Wallpapers**:
+  - **Display-Adaptive Resolution**: Dynamically detects the TV's real panel resolution (requests native 4K `3840×2160` on 4K TVs, Full HD `1920×1080` on 1080p TVs).
+  - **100% Verified Wide Landscapes**: Curated collection across birds, wildlife, alpine mountains, redwood forests, river canyons, and valleys from Unsplash (no vertical smartphone portraits).
+  - **Offline Fallback**: Caches current wallpaper to disk so your TV never displays a black screen when offline.
 - **Zero ADB Binary Requirement**: Connects over Wi-Fi using pure Python `adb-shell` (no Android SDK ADB installation needed, avoids macOS Local Network blocking).
 - **Cross-Platform**: First-class support for both **Windows** (PowerShell) and **macOS / Linux** (Bash).
 - **Completely Reversible**: Back up package lists and restore stock launcher anytime.
@@ -102,8 +110,9 @@ tools/tv.sh "pm list packages -3"       # Run any arbitrary ADB shell command
 | Path | Description |
 | --- | --- |
 | [setup.ps1](setup.ps1) / [setup.sh](setup.sh) | One-time environment setup for Windows and macOS/Linux |
-| [launcher/](launcher/) | Lightweight native Android TV launcher source code |
+| [launcher/](launcher/) | Lightweight native Android TV launcher source code (~50KB APK) |
 | [launcher/res/values/config.xml](launcher/res/values/config.xml) | Configure default dock apps, hidden system packages, and grid layout |
+| [launcher/WALLPAPER-CREDITS.md](launcher/WALLPAPER-CREDITS.md) | Photographic credits and license notes for the landscape wallpapers |
 | [launcher/build-and-install.ps1](launcher/build-and-install.ps1) | Build APK and install directly to TV (Windows) |
 | [launcher/build-and-install.sh](launcher/build-and-install.sh) | Build APK and install directly to TV (macOS/Linux) |
 | [tools/tv.py](tools/tv.py) | Pure-Python ADB client: Wi-Fi discovery, debloat, restore, typing, screenshots |
@@ -139,7 +148,7 @@ tools/tv.sh "pm list packages -3"       # Run any arbitrary ADB shell command
 
 ## Gotchas & Troubleshooting
 
-- **Google TV / Android TV Home Button Hijacking**: When disabling stock launchers, Google's setup wizard (`com.google.android.tungsten.setupwraith`) can intercept the Home button. The install script automatically disables this package, and restore re-enables it.
+- **Google TV / Android TV Home Button Hijacking**: When disabling stock launchers, Google's setup wizard (`com.google.android.tungsten.setupwraith`) or OEM launchers can intercept the Home button. The install script automatically disables both stock launchers and the setup wraith, and restore re-enables them.
 - **Location Permission for Wi-Fi Name**: On Android 10+, Android hides Wi-Fi SSID from apps unless granted location permissions (`ACCESS_FINE_LOCATION`). The build-and-install scripts grant this via ADB automatically.
 - **Reversible Changes**: No system partition modifications are performed. All disabled apps can be re-enabled instantly with `--restore`.
 
@@ -149,7 +158,7 @@ tools/tv.sh "pm list packages -3"       # Run any arbitrary ADB shell command
 
 - **Author (This Enhanced Version)**:
   - **Abu Sayeed Bin Farhad Shafee / Lilac E Designs LLC**
-  - Complete overhaul, Windows PowerShell and cross-platform Python CLI tools, dynamic Unsplash nature wallpapers, weather, custom dock management, Xiaomi P1 optimization, and standalone build pipelines.
+  - Complete overhaul, Windows PowerShell and cross-platform Python CLI tools, dynamic 4K/1080p Unsplash nature wallpapers, weather, custom dock management, Xiaomi P1 optimization, and standalone build pipelines.
 - **Original Foundation**:
   - Based on the initial launcher concept and scripts by **Mihir Gupta** ([mihirgupta0900/tv-home](https://github.com/mihirgupta0900/tv-home)), inspired by [tv-vibehack](https://github.com/Gathin23/tv-vibehack) by Gathin23.
 - **Photography**:

@@ -277,7 +277,7 @@ def cmd_shot(dev, out_path):
     if not out_path:
         out_path = "screenshot.png"
     remote_tmp = "/data/local/tmp/_shot.png"
-    dev.shell(f"screencap -p {remote_tmp}")
+    dev.shell(f"screencap -p {remote_tmp}", read_timeout_s=30)
     dev.pull(remote_tmp, out_path)
     dev.shell(f"rm -f {remote_tmp}")
     print(f"Saved screenshot to {out_path}")

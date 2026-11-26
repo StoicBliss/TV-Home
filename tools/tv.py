@@ -22,6 +22,7 @@ import concurrent.futures
 import getpass
 import hashlib
 import os
+import shlex
 import socket
 import sys
 import urllib.request
@@ -264,9 +265,9 @@ def cmd_type(dev, text, press_enter=False):
     if not text:
         sys.exit("Nothing to type.")
 
-    # ADB input text escapes: space becomes %s, quotes escaped
-    esc = text.replace("'", "\\'").replace(" ", "%s")
-    dev.shell(f"input text '{esc}'")
+    # ADB input text escapes: space becomes %s, safely quoted for shell execution
+    safe_text = shlex.quote(text.replace(" ", "%s"))
+    dev.shell(f"input text {safe_text}")
     if press_enter:
         dev.shell("input keyevent KEYCODE_ENTER")
     print(f"Typed {len(text)} characters on TV{' (with Enter)' if press_enter else ''}.")
@@ -275,7 +276,7 @@ def cmd_type(dev, text, press_enter=False):
 def cmd_shot(dev, out_path):
     if not out_path:
         out_path = "screenshot.png"
-    remote_tmp = "/sdcard/_shot.png"
+    remote_tmp = "/data/local/tmp/_shot.png"
     dev.shell(f"screencap -p {remote_tmp}")
     dev.pull(remote_tmp, out_path)
     dev.shell(f"rm -f {remote_tmp}")

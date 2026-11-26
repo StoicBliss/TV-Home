@@ -112,45 +112,64 @@ public class MainActivity extends Activity {
     private ImageView wallBack, wallFront;
     private View gridShade;
     private static final String[] UNSPLASH_NATURE_IDS = {
-        "photo-1506744038136-46273834b3fb", // Yosemite Valley
-        "photo-1470071459604-3b5ec3a7fe05", // Misty forest
-        "photo-1426604966848-d7adac402bff", // Alpine lake
-        "photo-1472214103451-9374bd1c798e", // Green rolling hills
-        "photo-1501785888041-af3ef285b470", // Coastal sunset
-        "photo-1441974231531-c6227db76b6e", // Sunlit woods
-        "photo-1511497584788-87676104235f", // Pine forest
-        "photo-1469474968028-56623f02e42e", // Mountain path
-        "photo-1507525428034-b723cf961d3e", // Ocean beach
-        "photo-1518495973542-4542c06a5843", // Sunburst trees
-        "photo-1447752875215-b2761acb3c5d", // Autumn river
-        "photo-1500534314209-a25ddb2bd429", // Swiss Alps
-        "photo-1519681393784-d120267933ba", // Starry snowy peaks
-        "photo-1475924156734-496f6cac6ec1", // Ocean dawn
-        "photo-1497436072909-60f360e1d4b1", // Mountain reflection
+        // --- Birds ---
+        "photo-1618331835717-801e976710b2", // Bald eagle perched
+        "photo-1549608276-5786777e6587", // Eagle in soaring flight
+        "photo-1480044965905-02098d419e96", // Coastal bird over water
+        "photo-1444464666168-49d633b86797", // Colorful songbird on branch
+        "photo-1509198397868-475647b2a1e5", // Barn owl portrait
+        "photo-1579952363873-27f3bade9f55", // Hummingbird in flight
+        "photo-1552728089-57bdde30beb3", // Tropical parrot plumage
+        "photo-1555169062-013468b47731", // Vibrant macaw profile
+        "photo-1522926193341-e9ffd686c60f", // Seabird soaring coast
+        "photo-1555685812-4b943f1cb0eb", // Keel-billed toucan
+        "photo-1539664030485-a936c7d29c6e", // Heron over misty lake
+
+        // --- Wildlife ---
+        "photo-1534188753412-3e26d0d618d6", // Lion resting on savannah
+        "photo-1561731216-c3a4d99437d5", // Tiger in jungle stream
+        "photo-1484406566174-9da000fda645", // Majestic deer stag in mist
+        "photo-1546182990-dffeafbe841d", // Lion in golden hour
+        "photo-1535083783855-76ae62b2914e", // Giraffes against sunset
+        "photo-1557050543-4d5f4e07ef46", // African elephant savannah
+        "photo-1575550959106-5a7defe28b56", // Leopard in acacia tree
+        "photo-1534567153574-2b12153a87f0", // Grizzly bear in river
+        "photo-1507668077129-56e32842fceb", // Zebra herd on plains
+
+        // --- Mountains ---
         "photo-1464822759023-fed622ff2c3b", // Mountain ridge sunset
-        "photo-1513836279014-a89f7a76ae86", // Snowy pines from above
-        "photo-1502082553048-f009c37129b9", // Ancient green forest
-        "photo-1433086966358-54859d0ed716", // Canyon waterfall
-        "photo-1510784722466-f2aa9c52fff6", // Wild flowers sunset
-        "photo-1473448912268-2022ce9509d8", // Pine mist
-        "photo-1470240731273-7821a6eeb6bd", // Autumn forest path
-        "photo-1439853949127-fa647821eba0", // Serene mountain lake
-        "photo-1470770841072-f978cf4d019e", // Norwegian fjord
-        "photo-1509316975850-ff9c5deb0cd9", // Desert dunes
-        "photo-1504893524553-b855bce32c67", // Alpine waterfall
-        "photo-1518709268805-4e9042af9f23", // Emerald canyon
-        "photo-1465146344425-f00d5f5c8f07", // Forest blooms
-        "photo-1476610182048-b716b80e88b1", // Rapids in wilderness
-        "photo-1418065460487-3e41a6c84dc5", // Redwood mist
-        "photo-1491555103944-7c647fd857e6", // Ocean cliffs
-        "photo-1492693429561-1c283eb177e0", // Waterfall mist
-        "photo-1493246507139-91e8fad9978e", // Mountain lake
-        "photo-1505765050516-f72dcac9c60e", // Golden hour trail
-        "photo-1516214104703-d870798883c5", // Winter trees
-        "photo-1523712999610-f77fbcfc3843", // Sunlit meadow
-        "photo-1508739773434-c26b3d09e071", // Autumn canopy
-        "photo-1483728642387-6c3bdd6c93e5", // Rocky peaks
-        "photo-1490682143684-14369e18dce8"  // Green canopy
+        "photo-1519681393784-d120267933ba", // Starry snowy peaks
+        "photo-1500534314209-a25ddb2bd429", // Swiss Alps
+        "photo-1483728642387-6c3bdd6c93e5", // Rocky alpine peaks
+        "photo-1465056836041-7f43ac27dcb5", // Alpine mountain lake
+        "photo-1542601906990-b4d3fb778b09", // Green mountain ridge
+        "photo-1486870591958-9b9d0d1dda99", // Snowy mountain sunburst
+
+        // --- Forests ---
+        "photo-1441974231531-c6227db76b6e", // Sunlit woods
+        "photo-1470071459604-3b5ec3a7fe05", // Misty forest canopy
+        "photo-1473448912268-2022ce9509d8", // Pine tree mist
+        "photo-1448375240586-882707db888b", // Deep woodland path
+        "photo-1508739773434-c26b3d09e071", // Autumn golden canopy
+        "photo-1470240731273-7821a6eeb6bd", // Autumn forest trail
+        "photo-1418065460487-3e41a6c84dc5", // Redwood morning mist
+
+        // --- Rivers & Waterfalls ---
+        "photo-1433086966358-54859d0ed716", // Canyon waterfall cascade
+        "photo-1447752875215-b2761acb3c5d", // Autumn river rapids
+        "photo-1504893524553-b855bce32c67", // Alpine waterfall stream
+        "photo-1432405972618-c60b0225b8f9", // Cascading woodland falls
+        "photo-1498855926480-d98e83099315", // Emerald winding river
+        "photo-1470770841072-f978cf4d019e", // Norwegian fjord waters
+
+        // --- Valleys ---
+        "photo-1506744038136-46273834b3fb", // Yosemite Valley vista
+        "photo-1426604966848-d7adac402bff", // Alpine valley lake
+        "photo-1472214103451-9374bd1c798e", // Green rolling hills valley
+        "photo-1518709268805-4e9042af9f23", // Emerald valley canyon
+        "photo-1501785888041-af3ef285b470", // Coastal valley sunset
+        "photo-1469474968028-56623f02e42e", // Mountain path valley
+        "photo-1497436072909-60f360e1d4b1"  // Mountain reflection valley
     };
     private int wallIndex = -1;
     private long wallChangedAt;
@@ -161,6 +180,8 @@ public class MainActivity extends Activity {
     private int glowColor = 0xFF3A3A3A;
     private ValueAnimator glowAnim;
     private int lastFocusedId = View.NO_ID;
+    private int lastDockFocusedId = View.NO_ID;
+    private String lastDockFocusedPkg = null;
     private boolean firstShow = true;
     private int packageSeq;
     private PopupWindow inputsPopup, dockPopup;
@@ -223,13 +244,22 @@ public class MainActivity extends Activity {
         updateClock();
         updateNetwork();
         updateWeather(true);
-        View last = lastFocusedId == View.NO_ID ? null : findViewById(lastFocusedId);
-        if (last == null && !dockCards.isEmpty()) last = dockCards.get(0);
-        if (last != null) last.requestFocus();
+        focusDock();
         if (getPackageManager().getChangedPackages(packageSeq) != null) buildApps();
         if (firstShow) { firstShow = false; playEntrance(); }
         if (wallIndex < 0 || SystemClock.elapsedRealtime() - wallChangedAt >= WALLPAPER_INTERVAL_MS) nextWallpaper();
         else scheduleWallpaper(WALLPAPER_INTERVAL_MS - (SystemClock.elapsedRealtime() - wallChangedAt));
+    }
+
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+        if (hasFocus) {
+            View current = getCurrentFocus();
+            if (current == null || (!dockCards.contains(current) && !gridCards.contains(current))) {
+                focusDock();
+            }
+        }
     }
 
     @Override
@@ -260,14 +290,43 @@ public class MainActivity extends Activity {
                 return;
             }
         }
-        if (!dockCards.isEmpty()) dockCards.get(0).requestFocus();
-        scroll.smoothScrollTo(0, 0);
+        focusDock();
     }
 
     @Override
     @SuppressWarnings("deprecation")
     public void onBackPressed() {
-        if (scroll.getScrollY() > 0 && !dockCards.isEmpty()) dockCards.get(0).requestFocus();
+        View current = getCurrentFocus();
+        boolean inDock = current != null && dockCards.contains(current);
+        if (!inDock && !dockCards.isEmpty()) {
+            focusDock();
+            return;
+        }
+    }
+
+    private void focusDock() {
+        View target = null;
+        if (lastDockFocusedPkg != null) {
+            for (View c : dockCards) {
+                if (c.getTag() instanceof App && lastDockFocusedPkg.equals(((App) c.getTag()).pkg)) {
+                    target = c;
+                    break;
+                }
+            }
+        }
+        if (target == null && lastDockFocusedId != View.NO_ID) {
+            View v = findViewById(lastDockFocusedId);
+            if (v != null && dockCards.contains(v)) target = v;
+        }
+        if (target == null && !dockCards.isEmpty()) {
+            target = dockCards.get(0);
+        }
+        if (target != null) {
+            final View fTarget = target;
+            fTarget.requestFocus();
+            fTarget.post(fTarget::requestFocus);
+            scroll.smoothScrollTo(0, 0);
+        }
     }
 
     // ---------------------------------------------------------------- layout
@@ -320,7 +379,7 @@ public class MainActivity extends Activity {
         bottom.setClipToPadding(false);
         hero.addView(bottom, lp(-1, -2, Gravity.BOTTOM, dp(48), 0, dp(48), dp(30)));
 
-        title = text(34, "sans-serif-light", Color.WHITE);
+        title = text(34, "sans-serif-medium", Color.WHITE);
         title.setShadowLayer(dp(18), 0, 0, 0x66000000);
         title.setSingleLine(true);
         bottom.addView(title, new LinearLayout.LayoutParams(-2, -2));
@@ -331,6 +390,7 @@ public class MainActivity extends Activity {
         dockRow.setGravity(Gravity.CENTER);
         dockRow.setClipChildren(false);
         dockRow.setClipToPadding(false);
+        dockRow.setDescendantFocusability(ViewGroup.FOCUS_BEFORE_DESCENDANTS);
         dockRow.setPadding(dp(20), dp(22), dp(20), dp(22));
         GradientDrawable band = new GradientDrawable();
         band.setColor(0x1FFFFFFF);
@@ -361,38 +421,65 @@ public class MainActivity extends Activity {
     private View buildHeader() {
         FrameLayout header = new FrameLayout(this);
         header.setClipChildren(false);
+        header.setDescendantFocusability(ViewGroup.FOCUS_AFTER_DESCENDANTS);
 
-        LinearLayout left = new LinearLayout(this);
-        left.setOrientation(LinearLayout.VERTICAL);
-        greeting = text(10, "sans-serif-medium", 0xB3FFFFFF);
-        greeting.setLetterSpacing(0.25f);
-        greeting.setSingleLine(true);
-        greeting.setPadding(0, 0, dp(16), 0);
-        left.addView(greeting);
+        LinearLayout panel = new LinearLayout(this);
+        panel.setOrientation(LinearLayout.HORIZONTAL);
+        panel.setGravity(Gravity.CENTER_VERTICAL);
+        panel.setPadding(dp(18), dp(10), dp(20), dp(10));
 
-        LinearLayout clockRow = new LinearLayout(this);
-        clockRow.setGravity(Gravity.BOTTOM);
-        clock = text(54, "sans-serif-thin", Color.WHITE);
+        GradientDrawable glass = new GradientDrawable();
+        glass.setColor(0x3812141A);
+        glass.setStroke(dp(1), 0x26FFFFFF);
+        glass.setCornerRadius(dp(14));
+        panel.setBackground(glass);
+
+        // Apple SF-style Clock
+        LinearLayout clockCol = new LinearLayout(this);
+        clockCol.setOrientation(LinearLayout.HORIZONTAL);
+        clockCol.setGravity(Gravity.BOTTOM);
+
+        clock = text(48, "sans-serif-medium", Color.WHITE);
         clock.setIncludeFontPadding(false);
-        clockRow.addView(clock);
-        ampm = text(12, "sans-serif-light", 0xCCFFFFFF);
-        clockRow.addView(ampm, llp(-2, -2, dp(6), 0, 0, dp(8)));
-        left.addView(clockRow, llp(-2, -2, 0, dp(2), 0, dp(2)));
+        clock.setLetterSpacing(-0.02f);
+        clockCol.addView(clock);
 
-        date = text(10, "sans-serif-medium", 0x99FFFFFF);
+        ampm = text(11, "sans-serif-medium", 0x99FFFFFF);
+        ampm.setLetterSpacing(0.04f);
+        clockCol.addView(ampm, llp(-2, -2, dp(5), 0, 0, dp(5)));
+
+        panel.addView(clockCol, new LinearLayout.LayoutParams(-2, -2));
+
+        // Glass divider line
+        View divider = new View(this);
+        divider.setBackgroundColor(0x26FFFFFF);
+        LinearLayout.LayoutParams divLp = new LinearLayout.LayoutParams(dp(1), dp(36));
+        divLp.setMargins(dp(16), 0, dp(16), 0);
+        panel.addView(divider, divLp);
+
+        // Details column: Greeting, Date, Weather
+        LinearLayout details = new LinearLayout(this);
+        details.setOrientation(LinearLayout.VERTICAL);
+        details.setGravity(Gravity.CENTER_VERTICAL);
+
+        greeting = text(9, "sans-serif-medium", 0x88FFFFFF);
+        greeting.setLetterSpacing(0.18f);
+        greeting.setSingleLine(true);
+        details.addView(greeting);
+
+        date = text(12, "sans-serif-medium", 0xE6FFFFFF);
         date.setSingleLine(true);
-        date.setPadding(0, 0, dp(16), 0);
-        date.setLetterSpacing(0.22f);
-        left.addView(date);
+        details.addView(date, llp(-2, -2, 0, dp(1), 0, 0));
 
-        weather = text(11, "sans-serif-medium", 0xCCFFFFFF);
+        weather = text(11, "sans-serif", 0xB3FFFFFF);
         weather.setSingleLine(true);
-        weather.setPadding(0, 0, dp(16), 0);
-        weather.setLetterSpacing(0.18f);
-        left.addView(weather, llp(-2, -2, 0, dp(5), 0, 0));
+        details.addView(weather, llp(-2, -2, 0, dp(2), 0, 0));
 
-        for (TextView t : new TextView[]{greeting, clock, ampm, date, weather}) t.setShadowLayer(dp(10), 0, dp(1), 0xB3000000);
-        header.addView(left, new FrameLayout.LayoutParams(dp(450), -2, Gravity.START | Gravity.TOP));
+        for (TextView t : new TextView[]{greeting, clock, ampm, date, weather}) {
+            t.setShadowLayer(dp(8), 0, dp(1), 0x66000000);
+        }
+        panel.addView(details, new LinearLayout.LayoutParams(-2, -2));
+        header.addView(panel, new FrameLayout.LayoutParams(-2, -2, Gravity.START | Gravity.TOP));
 
         LinearLayout right = new LinearLayout(this);
         right.setGravity(Gravity.CENTER_VERTICAL);
@@ -521,6 +608,16 @@ public class MainActivity extends Activity {
         dockCards.clear();
         gridCards.clear();
 
+        int initialDockIdx = 0;
+        if (lastDockFocusedPkg != null) {
+            for (int i = 0; i < dock.size(); i++) {
+                if (lastDockFocusedPkg.equals(dock.get(i).pkg)) {
+                    initialDockIdx = i;
+                    break;
+                }
+            }
+        }
+
         for (int i = 0; i < dock.size(); i++) {
             View tile = tile(dock.get(i), true);
             LinearLayout.LayoutParams p = new LinearLayout.LayoutParams(0, -2, 1f);
@@ -549,10 +646,12 @@ public class MainActivity extends Activity {
         appsLabel.setVisibility(rest.isEmpty() ? View.GONE : View.VISIBLE);
         wireFocus();
 
-        if (!dock.isEmpty()) { title.setText(dock.get(0).label); setGlow(dock.get(0).color); }
-        View last = lastFocusedId == View.NO_ID ? null : findViewById(lastFocusedId);
-        if (last != null) last.requestFocus();
-        else if (!dockCards.isEmpty()) dockCards.get(0).requestFocus();
+        if (!dock.isEmpty()) {
+            App initialApp = dock.get(initialDockIdx);
+            title.setText(initialApp.label);
+            setGlow(initialApp.color);
+        }
+        focusDock();
     }
 
     /** A 16:9 card with the app's banner; the name shows under it while focused. */
@@ -642,10 +741,14 @@ public class MainActivity extends Activity {
                     .setInterpolator(new DecelerateInterpolator())
                     .setDuration(160).start();
             shine.animate().alpha(has ? 1f : 0f).setDuration(150).start();
-            label.animate().alpha(has ? 1f : 0f).translationY(has ? dp(2) : 0).setDuration(150).start();
+            if (!inDock) {
+                label.animate().alpha(has ? 1f : 0f).translationY(has ? dp(2) : 0).setDuration(150).start();
+            }
             if (!has) return;
             lastFocusedId = v.getId();
             if (inDock) {
+                lastDockFocusedId = v.getId();
+                lastDockFocusedPkg = app.pkg;
                 title.setText(app.label);
                 title.animate().alpha(1f).setDuration(130).start();
                 animateGlow(app.color);
@@ -1237,7 +1340,7 @@ public class MainActivity extends Activity {
         boolean is24 = android.text.format.DateFormat.is24HourFormat(this);
         clock.setText(new SimpleDateFormat(is24 ? "H:mm" : "h:mm", Locale.getDefault()).format(now.getTime()));
         ampm.setText(is24 ? "" : (h < 12 ? "AM" : "PM"));
-        date.setText(new SimpleDateFormat("EEEE  d MMMM", Locale.getDefault()).format(now.getTime()).toUpperCase(Locale.getDefault()));
+        date.setText(new SimpleDateFormat("EEEE, d MMMM", Locale.getDefault()).format(now.getTime()));
     }
 
     private void setPillStartIcon(TextView p, int iconRes) {
@@ -1570,8 +1673,15 @@ public class MainActivity extends Activity {
 
         wallBack.animate().alpha(1f).setDuration(dur).withEndAction(() -> {
             // Swap roles: old front is now the hidden back layer.
+            Drawable oldDraw = wallFront.getDrawable();
             wallFront.setImageDrawable(null);
             wallFront.setAlpha(0f);
+            if (oldDraw instanceof android.graphics.drawable.BitmapDrawable) {
+                Bitmap oldBmp = ((android.graphics.drawable.BitmapDrawable) oldDraw).getBitmap();
+                if (oldBmp != null && !oldBmp.isRecycled() && oldBmp != bm) {
+                    oldBmp.recycle();
+                }
+            }
             ImageView tmp = wallFront;
             wallFront = wallBack;
             wallBack = tmp;

@@ -145,6 +145,8 @@ try {
         "pm grant com.shafee.tvhome android.permission.ACCESS_COARSE_LOCATION",
         "cmd package set-home-activity --user 0 com.shafee.tvhome/.MainActivity",
         "pm disable-user --user 0 $StockLauncher",
+        "pm disable-user --user 0 com.google.android.apps.tv.launcherx",
+        "pm disable-user --user 0 com.google.android.tvlauncher",
         "pm disable-user --user 0 com.google.android.tungsten.setupwraith",
         "pm disable-user --user 0 com.xiaomi.mitv.manualhelp",
         "cmd package set-home-activity --user 0 com.shafee.tvhome/.MainActivity",

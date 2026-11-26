@@ -7,8 +7,15 @@ cd "$(dirname "$0")"
 export JAVA_HOME="${JAVA_HOME:-/opt/homebrew/opt/openjdk@17}"
 export PATH="$JAVA_HOME/bin:$PATH"
 SDK="${ANDROID_HOME:-/opt/homebrew/share/android-commandlinetools}"
-BT="$SDK/build-tools/34.0.0"
-JAR="$SDK/platforms/android-34/android.jar"
+[ -d "$SDK" ] || [ ! -d "$HOME/Library/Android/sdk" ] || SDK="$HOME/Library/Android/sdk"
+[ -d "$SDK" ] || [ ! -d "$HOME/Android/Sdk" ] || SDK="$HOME/Android/Sdk"
+
+BT="$(ls -d "$SDK/build-tools/"* 2>/dev/null | sort -V | tail -n 1)"
+[ -n "$BT" ] || { echo "Error: No build-tools found in $SDK/build-tools"; exit 1; }
+
+PLAT="$(ls -d "$SDK/platforms/android-"* 2>/dev/null | sort -V | tail -n 1)"
+[ -n "$PLAT" ] || { echo "Error: No platforms found in $SDK/platforms"; exit 1; }
+JAR="$PLAT/android.jar"
 # Google TV stock launcher; older Android TV sets use com.google.android.tvlauncher.
 STOCK_LAUNCHER="${STOCK_LAUNCHER:-com.google.android.apps.tv.launcherx}"
 B=build
@@ -41,6 +48,8 @@ printf '%s\n' \
   "pm grant com.shafee.tvhome android.permission.ACCESS_COARSE_LOCATION" \
   "cmd package set-home-activity --user 0 com.shafee.tvhome/.MainActivity" \
   "pm disable-user --user 0 $STOCK_LAUNCHER" \
+  "pm disable-user --user 0 com.google.android.tvlauncher" \
+  "pm disable-user --user 0 com.google.android.apps.tv.launcherx" \
   "pm disable-user --user 0 com.google.android.tungsten.setupwraith" \
   "pm disable-user --user 0 com.xiaomi.mitv.manualhelp" \
   "cmd package set-home-activity --user 0 com.shafee.tvhome/.MainActivity" \

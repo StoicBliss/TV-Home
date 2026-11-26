@@ -30,11 +30,13 @@ import android.net.ConnectivityManager;
 import android.net.Network;
 import android.net.NetworkCapabilities;
 import android.net.wifi.WifiManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.SystemClock;
 import android.provider.Settings;
+import android.util.DisplayMetrics;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.KeyEvent;
@@ -112,64 +114,51 @@ public class MainActivity extends Activity {
     private ImageView wallBack, wallFront;
     private View gridShade;
     private static final String[] UNSPLASH_NATURE_IDS = {
-        // --- Birds ---
+        // --- Birds (all verified wide landscape) ---
         "photo-1618331835717-801e976710b2", // Bald eagle perched
         "photo-1549608276-5786777e6587", // Eagle in soaring flight
         "photo-1480044965905-02098d419e96", // Coastal bird over water
-        "photo-1444464666168-49d633b86797", // Colorful songbird on branch
-        "photo-1509198397868-475647b2a1e5", // Barn owl portrait
-        "photo-1579952363873-27f3bade9f55", // Hummingbird in flight
-        "photo-1552728089-57bdde30beb3", // Tropical parrot plumage
-        "photo-1555169062-013468b47731", // Vibrant macaw profile
+        "photo-1444464666168-49d633b86797", // Songbird on branch
         "photo-1522926193341-e9ffd686c60f", // Seabird soaring coast
-        "photo-1555685812-4b943f1cb0eb", // Keel-billed toucan
-        "photo-1539664030485-a936c7d29c6e", // Heron over misty lake
+        "photo-1555685812-4b943f1cb0eb", // Toucan in rainforest
+        "photo-1520808663317-647b476a81b9", // Atlantic puffin on cliff
+        "photo-1470114716159-e389f8712fda", // Kingfisher perched branch
+        "photo-1516641396056-0ce60a85d49f", // Flamingos on lake sunrise
 
-        // --- Wildlife ---
-        "photo-1534188753412-3e26d0d618d6", // Lion resting on savannah
-        "photo-1561731216-c3a4d99437d5", // Tiger in jungle stream
-        "photo-1484406566174-9da000fda645", // Majestic deer stag in mist
-        "photo-1546182990-dffeafbe841d", // Lion in golden hour
-        "photo-1535083783855-76ae62b2914e", // Giraffes against sunset
-        "photo-1557050543-4d5f4e07ef46", // African elephant savannah
-        "photo-1575550959106-5a7defe28b56", // Leopard in acacia tree
+        // --- Wildlife (all verified wide landscape) ---
         "photo-1534567153574-2b12153a87f0", // Grizzly bear in river
-        "photo-1507668077129-56e32842fceb", // Zebra herd on plains
+        "photo-1564349683136-77e08dba1ef7", // Giant panda in bamboo forest
+        "photo-1474511320723-9a56873867b5", // Red fox in autumn woods
+        "photo-1504173010664-32509aeebb62", // Wolf in misty wilderness
+        "photo-1589656966895-2f33e7653819", // Polar bear on Arctic ice
+        "photo-1575550959106-5a7defe28b56", // Leopard on acacia branch
+        "photo-1517825738774-7de9363ef735", // Brown bear cubs in river
+        "photo-1548767797-d8c844163c4c", // Cheetah running savannah
+        "photo-1437622368342-7a3d73a34c8f", // Sea turtle swimming coral reef
 
-        // --- Mountains ---
+        // --- Mountains & Alpine (all verified wide landscape) ---
         "photo-1464822759023-fed622ff2c3b", // Mountain ridge sunset
         "photo-1519681393784-d120267933ba", // Starry snowy peaks
-        "photo-1500534314209-a25ddb2bd429", // Swiss Alps
-        "photo-1483728642387-6c3bdd6c93e5", // Rocky alpine peaks
-        "photo-1465056836041-7f43ac27dcb5", // Alpine mountain lake
-        "photo-1542601906990-b4d3fb778b09", // Green mountain ridge
-        "photo-1486870591958-9b9d0d1dda99", // Snowy mountain sunburst
+        "photo-1470770841072-f978cf4d019e", // Norwegian fjord mountain lake
+        "photo-1426604966848-d7adac402bff", // Alpine lake reflection
+        "photo-1497436072909-60f360e1d4b1", // Mountain lake mirror reflection
+        "photo-1506744038136-46273834b3fb", // Yosemite Valley iconic river
+        "photo-1507525428034-b723cf961d3e", // Ocean beach sunset
+        "photo-1501785888041-af3ef285b470", // Coastal sunset vista
 
-        // --- Forests ---
-        "photo-1441974231531-c6227db76b6e", // Sunlit woods
-        "photo-1470071459604-3b5ec3a7fe05", // Misty forest canopy
-        "photo-1473448912268-2022ce9509d8", // Pine tree mist
-        "photo-1448375240586-882707db888b", // Deep woodland path
-        "photo-1508739773434-c26b3d09e071", // Autumn golden canopy
-        "photo-1470240731273-7821a6eeb6bd", // Autumn forest trail
-        "photo-1418065460487-3e41a6c84dc5", // Redwood morning mist
-
-        // --- Rivers & Waterfalls ---
-        "photo-1433086966358-54859d0ed716", // Canyon waterfall cascade
-        "photo-1447752875215-b2761acb3c5d", // Autumn river rapids
-        "photo-1504893524553-b855bce32c67", // Alpine waterfall stream
-        "photo-1432405972618-c60b0225b8f9", // Cascading woodland falls
-        "photo-1498855926480-d98e83099315", // Emerald winding river
-        "photo-1470770841072-f978cf4d019e", // Norwegian fjord waters
-
-        // --- Valleys ---
-        "photo-1506744038136-46273834b3fb", // Yosemite Valley vista
-        "photo-1426604966848-d7adac402bff", // Alpine valley lake
+        // --- Forests, Rivers & Valleys (all verified wide landscape) ---
+        "photo-1470071459604-3b5ec3a7fe05", // Misty pine forest landscape
+        "photo-1441974231531-c6227db76b6e", // Sunlit woodland trees
+        "photo-1447752875215-b2761acb3c5d", // Autumn river reflections
+        "photo-1473448912268-2022ce9509d8", // Pine trees in morning mist
+        "photo-1470240731273-7821a6eeb6bd", // Golden autumn forest path
+        "photo-1418065460487-3e41a6c84dc5", // Redwood forest in mist
+        "photo-1510784722466-f2aa9c52fff6", // Wildflower valley sunset
         "photo-1472214103451-9374bd1c798e", // Green rolling hills valley
-        "photo-1518709268805-4e9042af9f23", // Emerald valley canyon
-        "photo-1501785888041-af3ef285b470", // Coastal valley sunset
-        "photo-1469474968028-56623f02e42e", // Mountain path valley
-        "photo-1497436072909-60f360e1d4b1"  // Mountain reflection valley
+        "photo-1469474968028-56623f02e42e", // Mountain pass and path
+        "photo-1465146344425-f00d5f5c8f07", // Spring meadow blooms
+        "photo-1491555103944-7c647fd857e6", // Ocean cliffs and breakers
+        "photo-1469854523086-cc02fe5d8800"  // Valley road sunset
     };
     private int wallIndex = -1;
     private long wallChangedAt;
@@ -324,8 +313,21 @@ public class MainActivity extends Activity {
         if (target != null) {
             final View fTarget = target;
             fTarget.requestFocus();
-            fTarget.post(fTarget::requestFocus);
+            fTarget.post(() -> {
+                fTarget.requestFocus();
+                for (View dc : dockCards) {
+                    float targetAlpha = (dc == fTarget) ? 1.0f : 0.65f;
+                    dc.animate().alpha(targetAlpha).setDuration(180).start();
+                }
+            });
             scroll.smoothScrollTo(0, 0);
+        }
+    }
+
+    private void resetDockDimming() {
+        if (dockCards == null) return;
+        for (View dc : dockCards) {
+            dc.animate().alpha(1f).setDuration(180).start();
         }
     }
 
@@ -334,6 +336,8 @@ public class MainActivity extends Activity {
     private View buildUi() {
         FrameLayout root = new FrameLayout(this);
         root.setBackgroundColor(Color.BLACK);
+        root.setClipChildren(false);
+        root.setClipToPadding(false);
 
         // Wallpaper: two stacked layers so a new photo can crossfade in over the old one.
         wallBack = wallpaperLayer();
@@ -358,6 +362,8 @@ public class MainActivity extends Activity {
         scroll.setVerticalScrollBarEnabled(false);
         scroll.setOverScrollMode(View.OVER_SCROLL_NEVER);
         scroll.setFillViewport(true);
+        scroll.setClipChildren(false);
+        scroll.setClipToPadding(false);
         root.addView(scroll, new FrameLayout.LayoutParams(-1, -1));
 
         content = new LinearLayout(this);
@@ -541,7 +547,12 @@ public class MainActivity extends Activity {
             }
             v.animate().scaleX(has ? 1.05f : 1f).scaleY(has ? 1.05f : 1f)
                     .setInterpolator(new DecelerateInterpolator()).setDuration(160).start();
-            if (has) { lastFocusedId = v.getId(); scroll.smoothScrollTo(0, 0); fadeGlow(1f); }
+            if (has) {
+                lastFocusedId = v.getId();
+                scroll.smoothScrollTo(0, 0);
+                fadeGlow(1f);
+                resetDockDimming();
+            }
         });
         return p;
     }
@@ -566,7 +577,10 @@ public class MainActivity extends Activity {
             btn.setTextColor(has ? 0xE6FFFFFF : 0x80FFFFFF);
             v.animate().scaleX(has ? 1.03f : 1f).scaleY(has ? 1.03f : 1f)
                     .setInterpolator(new DecelerateInterpolator()).setDuration(160).start();
-            if (has) lastFocusedId = v.getId();
+            if (has) {
+                lastFocusedId = v.getId();
+                resetDockDimming();
+            }
         });
         btn.setOnClickListener(v -> showAddToDock(v));
         return btn;
@@ -658,6 +672,7 @@ public class MainActivity extends Activity {
     private View tile(App app, boolean inDock) {
         LinearLayout box = new LinearLayout(this);
         box.setOrientation(LinearLayout.VERTICAL);
+        box.setGravity(Gravity.CENTER_HORIZONTAL);
         box.setClipChildren(false);
         box.setClipToPadding(false);
 
@@ -688,9 +703,10 @@ public class MainActivity extends Activity {
             img.setPadding(dp(22), dp(14), dp(22), dp(14));
         }
 
-        GradientDrawable ring = new GradientDrawable();
+        GradientDrawable ring = new GradientDrawable(
+                GradientDrawable.Orientation.TOP_BOTTOM,
+                new int[]{0x40FFFFFF, 0x14FFFFFF});
         ring.setStroke(dp(2.5f), Color.WHITE);
-        ring.setColor(0x22FFFFFF);
         ring.setCornerRadius(dp(5));
         View shine = new View(this);
         shine.setBackground(ring);
@@ -698,6 +714,23 @@ public class MainActivity extends Activity {
         card.addView(shine, new FrameLayout.LayoutParams(-1, -1));
 
         box.addView(card, new LinearLayout.LayoutParams(-1, -2));
+
+        final View pill;
+        if (inDock) {
+            pill = new View(this);
+            GradientDrawable pillBg = new GradientDrawable();
+            pillBg.setColor(Color.WHITE);
+            pillBg.setCornerRadius(dp(1.5f));
+            pill.setBackground(pillBg);
+            pill.setAlpha(0f);
+            pill.setScaleX(0.4f);
+            LinearLayout.LayoutParams pillLp = new LinearLayout.LayoutParams(dp(22), dp(3));
+            pillLp.gravity = Gravity.CENTER_HORIZONTAL;
+            pillLp.topMargin = dp(8);
+            box.addView(pill, pillLp);
+        } else {
+            pill = null;
+        }
 
         TextView label = text(11, "sans-serif-medium", Color.WHITE);
         label.setText(app.label);
@@ -736,13 +769,30 @@ public class MainActivity extends Activity {
         });
 
         card.setOnFocusChangeListener((v, has) -> {
-            float s = has ? (inDock ? 1.08f : 1.06f) : 1f;
-            v.animate().scaleX(s).scaleY(s).translationZ(has ? dp(8) : 0)
+            float s = has ? (inDock ? 1.16f : 1.06f) : 1f;
+            v.animate().scaleX(s).scaleY(s).translationZ(has ? dp(10) : 0)
                     .setInterpolator(new DecelerateInterpolator())
-                    .setDuration(160).start();
-            shine.animate().alpha(has ? 1f : 0f).setDuration(150).start();
-            if (!inDock) {
+                    .setDuration(180).start();
+            shine.animate().alpha(has ? 1f : 0f).setDuration(160).start();
+            if (inDock) {
+                if (pill != null) {
+                    pill.animate().alpha(has ? 1f : 0f)
+                            .scaleX(has ? 1f : 0.4f)
+                            .translationY(has ? dp(4) : 0)
+                            .setInterpolator(new DecelerateInterpolator())
+                            .setDuration(180).start();
+                }
+                if (has) {
+                    for (View dc : dockCards) {
+                        float targetAlpha = (dc == v) ? 1.0f : 0.65f;
+                        dc.animate().alpha(targetAlpha).setDuration(180).start();
+                    }
+                }
+            } else {
                 label.animate().alpha(has ? 1f : 0f).translationY(has ? dp(2) : 0).setDuration(150).start();
+                if (has) {
+                    resetDockDimming();
+                }
             }
             if (!has) return;
             lastFocusedId = v.getId();
@@ -1422,7 +1472,34 @@ public class MainActivity extends Activity {
         return v;
     }
 
-    /** Decode the next photo off the main thread, then crossfade it in over the current one. */
+    private int[] getTargetWallpaperResolution() {
+        int w = 1920;
+        int h = 1080;
+        try {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+                DisplayMetrics realDm = new DisplayMetrics();
+                getWindowManager().getDefaultDisplay().getRealMetrics(realDm);
+                if (realDm.widthPixels > 0 && realDm.heightPixels > 0) {
+                    w = realDm.widthPixels;
+                    h = realDm.heightPixels;
+                }
+            } else {
+                DisplayMetrics dm = getResources().getDisplayMetrics();
+                if (dm.widthPixels > 0 && dm.heightPixels > 0) {
+                    w = dm.widthPixels;
+                    h = dm.heightPixels;
+                }
+            }
+        } catch (Throwable ignored) {}
+        // Guarantee at least 1080p full HD so lower-density TV panels never get downscaled images
+        if (w < 1920) {
+            float aspect = (float) w / Math.max(1, h);
+            w = 1920;
+            h = Math.round(1920f / (aspect > 0 ? aspect : (16f / 9f)));
+        }
+        return new int[]{w, h};
+    }
+
     /** Download or load a random nature photo from Unsplash off the main thread, then crossfade it in. */
     private void nextWallpaper() {
         handler.removeCallbacks(rotateWallpaper);
@@ -1436,7 +1513,8 @@ public class MainActivity extends Activity {
         getPreferences(MODE_PRIVATE).edit().putInt("wallpaper", wallIndex).apply();
 
         final String photoId = UNSPLASH_NATURE_IDS[wallIndex];
-        final String photoUrl = "https://images.unsplash.com/" + photoId + "?w=1920&q=80&fit=crop";
+        int[] res = getTargetWallpaperResolution();
+        final String photoUrl = "https://images.unsplash.com/" + photoId + "?w=" + res[0] + "&h=" + res[1] + "&fit=crop&q=80";
 
         new Thread(() -> {
             File cacheFile = new File(getCacheDir(), "wallpaper_cache.jpg");
